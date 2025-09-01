@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Preahvihear&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  font-family: "Preahvihear", sans-serif;
+}
+:root {
+  --primary-purple: #7127ba;
+  --secondary-purple: #693b93;
+  --accent-purple: #9857d3;
+  --electric-blue: #00d4ff;
+  --neon-pink: #ff006e;
+  --neon-green: #00ff88;
+  --cyber-yellow: #ffff00;
+  --dark-bg: #0a0a0a;
+  --darker-bg: #050505;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at 20% 20%, #7127ba40 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, #693b9340 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, #9857d340 0%, transparent 50%),
+    linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Total: 6s = 3s typing + 1s pause + 2s deleting */
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 17.5ch;
+    @media (max-width: 720px) {
+      width: 24ch;
+    }
+  }
+
+  70% {
+    width: 17.5ch; /* Pause before deleting */
+    @media (max-width: 720px) {
+      width: 24ch;
+    }
+  }
+
+  100% {
+    width: 0;
+  }
+}

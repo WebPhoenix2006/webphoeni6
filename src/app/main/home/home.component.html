@@ -1,0 +1,374 @@
+<!-- Background Canvas for Particles -->
+<canvas #particleCanvas class="particle-canvas"></canvas>
+<canvas #heroCanvas class="hero-canvas"></canvas>
+
+<!-- Animated Background Elements -->
+<div class="bg-elements">
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+  <div class="gradient-mesh"></div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar-custom">
+  <div class="nav-container">
+    <a class="navbar-brand glitch-text" [@glitchText]="glitchState">
+      <span class="logo-text">SAMUEL</span>
+      <div class="logo-underline"></div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-item" (click)="scrollToSection('hero')">
+        <span class="nav-text">Home</span>
+        <div class="nav-glow"></div>
+      </div>
+      <div class="nav-item" (click)="scrollToSection('experience')">
+        <span class="nav-text">Experience</span>
+        <div class="nav-glow"></div>
+      </div>
+      <div class="nav-item" (click)="scrollToSection('projects')">
+        <span class="nav-text">Projects</span>
+        <div class="nav-glow"></div>
+      </div>
+      <div class="nav-item" (click)="scrollToSection('contact')">
+        <span class="nav-text">Contact</span>
+        <div class="nav-glow"></div>
+      </div>
+    </div>
+    <div class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="hero" class="hero-section">
+  <div class="hero-container">
+    <!-- Floating Introduction -->
+    <div class="floating-intro" [@float]="floatState">
+      <div class="intro-arrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+      <div class="intro-text">
+        <span>Hello! I am </span>
+        <span class="name-highlight">Samuel Emeka</span>
+      </div>
+    </div>
+
+    <!-- Main Hero Content -->
+    <div class="hero-main">
+      <!-- Profile Image with Glow Effects -->
+      <div class="profile-container" [@float]="floatState">
+        <div class="profile-glow-1"></div>
+        <div class="profile-glow-2"></div>
+        <div class="profile-glow-3"></div>
+        <div class="profile-image">
+          <img
+            src="assets/images/me.png"
+            alt="Samuel Emeka"
+            class="profile-img"
+          />
+        </div>
+        <div class="holographic-border"></div>
+      </div>
+
+      <!-- Hero Text -->
+      <div class="hero-text">
+        <p class="hero-subtitle">A Developer who</p>
+        <h1 class="hero-title glitch-effect" [@glitchText]="glitchState">
+          Judges a book by its
+          <span class="title-highlight text-white">cover</span>...
+        </h1>
+        <p class="hero-description">
+          Because if the cover does not impress you what else can?
+        </p>
+      </div>
+    </div>
+
+    <!-- Animated Typewriter -->
+    <div class="typewriter-container">
+      <h2 class="typewriter-text">
+        {{ displayText }}<span class="cursor">|</span>
+      </h2>
+      <p class="current-role">
+        Currently, I'm a Software Engineer at Facebook,
+      </p>
+      <p class="bio-text">
+        A self-taught web developer, functioning in the industry for 3+ years
+        now. I make meaningful and delightful digital products that create an
+        equilibrium between user needs and business goals.
+      </p>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+      <span class="scroll-text">Scroll to explore</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section
+  id="experience"
+  class="experience-section"
+  [@staggerCards]="experiences"
+>
+  <div class="section-container">
+    <div class="section-header">
+      <h3 class="section-title">
+        Work <span class="title-accent">Experience</span>
+      </h3>
+      <div class="title-glow"></div>
+    </div>
+
+    <div class="experience-grid">
+      <div
+        *ngFor="let exp of experiences; let i = index"
+        class="experience-card"
+        [style.background]="exp.gradient"
+        [@buttonPulse]="buttonStates[exp.id]"
+        (mouseenter)="onButtonHover(exp.id, 'hover')"
+        (mouseleave)="onButtonHover(exp.id, 'idle')"
+      >
+        <div class="card-shine"></div>
+        <div class="card-border"></div>
+
+        <div class="card-content">
+          <div class="company-logo">
+            <img
+              [src]="'assets/images/' + exp.logo"
+              [alt]="exp.company"
+              class="logo-img"
+            />
+            <div class="logo-glow"></div>
+          </div>
+
+          <div class="card-info">
+            <h4 class="role-title">
+              {{ exp.role }} <span class="at-symbol">&#64;</span>
+              {{ exp.company }}
+            </h4>
+            <p class="role-description">{{ exp.description }}</p>
+            <p class="period">{{ exp.period }}</p>
+
+            <button
+              class="learn-more-btn"
+              [@buttonPulse]="buttonStates[exp.id + '-btn']"
+              (mouseenter)="onButtonHover(exp.id + '-btn', 'hover')"
+              (mouseleave)="onButtonHover(exp.id + '-btn', 'idle')"
+            >
+              <span class="btn-text">Learn More</span>
+              <div class="btn-glow"></div>
+              <div class="btn-particles">
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-section">
+  <div class="section-container">
+    <div class="skills-header">
+      <h4 class="skills-title">
+        I'm currently looking to join a
+        <span class="cross-functional">cross-functional</span> team
+      </h4>
+      <p class="skills-subtitle">
+        that values improving people's lives through accessible design
+      </p>
+    </div>
+
+    <!-- 3D Geometric Shape -->
+    <div class="geometric-container">
+      <div class="geometric-shape" [@morphShape]="floatState">
+        <div class="shape-face face-1"></div>
+        <div class="shape-face face-2"></div>
+        <div class="shape-face face-3"></div>
+        <div class="shape-face face-4"></div>
+        <div class="shape-particles">
+          <span class="geo-particle" *ngFor="let p of [1, 2, 3, 4, 5]"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Skills Grid -->
+    <div class="skills-grid">
+      <div class="skills-row skills-top">
+        <div
+          *ngFor="let skill of skillIcons.slice(0, 5)"
+          class="skill-icon"
+          [style.--skill-color]="skill.color"
+          (mouseenter)="onSkillHover(skill)"
+          [@buttonPulse]="buttonStates[skill.name] || 'idle'"
+        >
+          <img
+            [src]="'assets/images/' + skill.icon"
+            [alt]="skill.name"
+            class="skill-img"
+          />
+          <div class="skill-glow"></div>
+          <div class="skill-ripple"></div>
+          <span class="skill-tooltip">{{ skill.name }}</span>
+        </div>
+      </div>
+
+      <div class="skills-row skills-bottom">
+        <div
+          *ngFor="let skill of skillIcons.slice(5)"
+          class="skill-icon"
+          [style.--skill-color]="skill.color"
+          (mouseenter)="onSkillHover(skill)"
+          [@buttonPulse]="buttonStates[skill.name] || 'idle'"
+        >
+          <img
+            [src]="'assets/images/' + skill.icon"
+            [alt]="skill.name"
+            class="skill-img"
+          />
+          <div class="skill-glow"></div>
+          <div class="skill-ripple"></div>
+          <span class="skill-tooltip">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects-section">
+  <div class="section-container">
+    <div class="projects-grid">
+      <div
+        *ngFor="let project of projects; let i = index"
+        class="project-item"
+        [class.reverse]="i % 2 === 1"
+      >
+        <div class="project-info" [@float]="floatState">
+          <div class="project-header">
+            <p class="project-label">Featured Project</p>
+            <h5 class="project-title" [@glitchText]="glitchState">
+              {{ project.name }}
+            </h5>
+          </div>
+
+          <div class="project-description">
+            <p>{{ project.description }}</p>
+          </div>
+
+          <div class="project-tech">
+            <span *ngFor="let tech of project.tech" class="tech-tag">{{
+              tech
+            }}</span>
+          </div>
+
+          <div class="project-links">
+            <button
+              class="project-btn"
+              [@buttonPulse]="buttonStates['project-' + i]"
+              (mouseenter)="onButtonHover('project-' + i, 'hover')"
+              (mouseleave)="onButtonHover('project-' + i, 'idle')"
+              (click)="openProject(project)"
+            >
+              <span class="btn-icon">🚀</span>
+              <span class="btn-text">Launch Project</span>
+              <div class="btn-trail"></div>
+            </button>
+          </div>
+        </div>
+
+        <div class="project-visual">
+          <div class="project-screen">
+            <div class="screen-glow"></div>
+            <div class="screen-reflection"></div>
+            <img
+              [src]="'assets/images/' + project.image"
+              [alt]="project.name"
+              class="project-image"
+              [@float]="floatState"
+            />
+            <div
+              class="screen-overlay"
+              [style.background]="project.gradient"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="section-container">
+    <div class="contact-content">
+      <h5 class="contact-title" [@glitchText]="glitchState">Let's Connect</h5>
+      <p class="contact-description">
+        If you have any questions or inquiries, feel free to reach out!
+        <a href="mailto:devsamuel0611@gmail.com" class="email-link">
+          devsamuel0611&#64;gmail.com
+        </a>
+      </p>
+
+      <div class="social-links">
+        <a
+          href="https://twitter.com/theweb_phoenix"
+          target="_blank"
+          class="social-link twitter"
+        >
+          <div class="social-icon">
+            <i class="fa fa-twitter"></i>
+          </div>
+          <span class="social-text">Twitter</span>
+          <div class="social-glow"></div>
+        </a>
+
+        <a
+          href="https://ng.linkedin.com/in/samuel-emeka-214089312"
+          target="_blank"
+          class="social-link linkedin"
+        >
+          <div class="social-icon">
+            <i class="fa fa-linkedin"></i>
+          </div>
+          <span class="social-text">LinkedIn</span>
+          <div class="social-glow"></div>
+        </a>
+
+        <a
+          href="https://github.com/WebPhoenix2006"
+          target="_blank"
+          class="social-link github"
+        >
+          <div class="social-icon">
+            <i class="fa fa-github"></i>
+          </div>
+          <span class="social-text">GitHub</span>
+          <div class="social-glow"></div>
+        </a>
+
+        <a
+          href="https://wa.me/09046088720"
+          target="_blank"
+          class="social-link whatsapp"
+        >
+          <div class="social-icon">
+            <i class="fa fa-whatsapp"></i>
+          </div>
+          <span class="social-text">WhatsApp</span>
+          <div class="social-glow"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
