@@ -6,8 +6,6 @@
 <div class="bg-elements">
   <div class="floating-orb orb-1"></div>
   <div class="floating-orb orb-2"></div>
-  <div class="floating-orb orb-3"></div>
-  <div class="gradient-mesh"></div>
 </div>
 
 <!-- NAVIGATION -->
@@ -17,25 +15,25 @@
       <span class="logo-text">SAMUEL</span>
       <div class="logo-underline"></div>
     </a>
-    <div class="nav-menu">
-      <div class="nav-item" (click)="scrollToSection('hero')">
+    <div class="nav-menu" [class.nav-menu-open]="isMenuOpen">
+      <div class="nav-item" (click)="scrollToSection('hero'); closeMobileMenu()">
         <span class="nav-text">Home</span>
         <div class="nav-glow"></div>
       </div>
-      <div class="nav-item" (click)="scrollToSection('experience')">
+      <div class="nav-item" (click)="scrollToSection('experience'); closeMobileMenu()">
         <span class="nav-text">Experience</span>
         <div class="nav-glow"></div>
       </div>
-      <div class="nav-item" (click)="scrollToSection('projects')">
+      <div class="nav-item" (click)="scrollToSection('projects'); closeMobileMenu()">
         <span class="nav-text">Projects</span>
         <div class="nav-glow"></div>
       </div>
-      <div class="nav-item" (click)="scrollToSection('contact')">
+      <div class="nav-item" (click)="scrollToSection('contact'); closeMobileMenu()">
         <span class="nav-text">Contact</span>
         <div class="nav-glow"></div>
       </div>
     </div>
-    <div class="nav-toggle">
+    <div class="nav-toggle" [class.nav-toggle-active]="isMenuOpen" (click)="toggleMobileMenu()">
       <span></span>
       <span></span>
       <span></span>
@@ -93,9 +91,9 @@
       <h2 class="typewriter-text">
         {{ displayText }}<span class="cursor">|</span>
       </h2>
-      <p class="current-role">
-        Currently, I'm a Software Engineer at Facebook,
-      </p>
+      <!-- <p class="current-role">
+        I'm a Software Engineer at Facebook,
+      </p> -->
       <p class="bio-text">
         A self-taught web developer, functioning in the industry for 3+ years
         now. I make meaningful and delightful digital products that create an
@@ -189,16 +187,10 @@
       </p>
     </div>
 
-    <!-- 3D Geometric Shape -->
+    <!-- Geometric Shape -->
     <div class="geometric-container">
       <div class="geometric-shape" [@morphShape]="floatState">
-        <div class="shape-face face-1"></div>
-        <div class="shape-face face-2"></div>
-        <div class="shape-face face-3"></div>
-        <div class="shape-face face-4"></div>
-        <div class="shape-particles">
-          <span class="geo-particle" *ngFor="let p of [1, 2, 3, 4, 5]"></span>
-        </div>
+        <div class="shape-glow"></div>
       </div>
     </div>
 

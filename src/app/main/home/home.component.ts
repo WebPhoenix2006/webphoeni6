@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   floatState = 0;
   glitchState = 'normal';
   buttonStates: { [key: string]: string } = {};
+  isMenuOpen = false;
 
   particles: any[] = [];
   mouseX = 0;
@@ -301,7 +302,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.isBrowser) {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const offset = 80; // Account for fixed navbar
+        const elementPosition = element.offsetTop - offset;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
       }
     }
   }
@@ -317,5 +323,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSkillLeave(skill: any) {
     this.buttonStates[skill.name] = 'idle';
+  }
+
+  toggleMobileMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.isMenuOpen = false;
   }
 }
